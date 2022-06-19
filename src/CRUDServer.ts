@@ -15,7 +15,7 @@ export default class CRUDServer {
   }
 
   run(): void {
-    console.log('Server running on: ', this.port);
+    console.log(`Server id:${process.pid} running on: `, this.port);
     this.server.listen(this.port);
   }
 

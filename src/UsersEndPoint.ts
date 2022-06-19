@@ -18,13 +18,11 @@ export default class UsersEndPoint {
       let body = '';
       req.on('data', chunk => body += chunk);
       req.on('end', () => resolve(body))
-    });console.log(rawBody);
+    });
 
     try {
       const body = rawBody ? JSON.parse(rawBody) : {};
       const resource = path.basename(reqPath);
-      console.log(req.method, reqPath)
-      console.log(body);
 
       if (resource === 'users') {
         if (req.method === 'GET') {
@@ -34,6 +32,7 @@ export default class UsersEndPoint {
           if ('username' in body && 'age' in body && 'hobbies' in body) {
             const user = {} as TUser;
             user.id = uuid.v4();
+            delete body.id;
             Object.assign(user, body);
             res.writeHead(201, {'Content-Type': 'application/json'});
             res.end(JSON.stringify(this.users.createUser(user)));
