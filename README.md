@@ -1,6 +1,6 @@
 # Nodejs-CRUD-API
 
-### Instalation
+### Installation
 git clone "this repository link"
 
 git checkout dev
