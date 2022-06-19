@@ -3,7 +3,11 @@ import cluster from 'cluster';
 import Cluster from './Cluster';
 import CRUDServer from './CRUDServer';
 
-if (cluster.isPrimary)
+let server: CRUDServer;
+
+if (cluster.isPrimary && process.argv.includes('--multi'))
   new Cluster().run();
 else
-  new CRUDServer().run();
+  (server = new CRUDServer()).run();
+
+export { server }

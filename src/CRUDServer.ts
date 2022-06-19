@@ -19,6 +19,10 @@ export default class CRUDServer {
     this.server.listen(this.port);
   }
 
+  stop(): void {
+    this.server.close();
+  }
+
   #getPort(envVar: string): number {
     return Number(process.env[envVar] ?? this.defaultPort);
   }

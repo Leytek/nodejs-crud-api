@@ -10,7 +10,8 @@
     "start-build": "node --experimental-specifier-resolution=node dest",
     "start:dev": "nodemon src",
     "start:prod": "npm run build && npm run start-build",
-    "start:multi": "ts-node-esm --experimental-specifier-resolution=node src"
+    "start:multi": "ts-node-esm --experimental-specifier-resolution=node src --multi",
+    "test": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/Leytek/nodejs-crud-api#readme",
   "devDependencies": {
     "@types/uuid": "^8.3.4",
+    "jest": "^28.1.1",
     "nodemon": "^2.0.18",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4"
