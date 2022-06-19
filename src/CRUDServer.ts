@@ -4,7 +4,7 @@ import UsersEndPoint from './UsersEndPoint';
 export default class CRUDServer {
   private portEnvVar = 'SERVER_PORT';
   private defaultPort = 8080;
-  private readonly port: number;
+  public readonly port: number;
   private server;
   private usersEndPoint;
 

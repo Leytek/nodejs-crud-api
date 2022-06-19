@@ -5,7 +5,7 @@ import { server } from '../dest/index';
 const request = async (data, path, method) => {
   let options = {
     hostname: 'localhost',
-    port: 8008,
+    port: server.port,
     path,
     method,
     headers: {
@@ -21,7 +21,6 @@ const request = async (data, path, method) => {
         resData += chunk;
       });
       res.on('close', () => {
-        console.log(`body-->>${resData}<<--`)
         const body = resData ? JSON.parse(resData) : '';
         resolve({
           res,
