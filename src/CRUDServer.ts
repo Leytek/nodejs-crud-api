@@ -12,7 +12,6 @@ export default class CRUDServer {
     this.port = this.#getPort(this.portEnvVar);
     this.usersEndPoint = new UsersEndPoint();
     this.server = http.createServer(this.#handleRequest);
-
   }
 
   run(): void {
@@ -25,7 +24,11 @@ export default class CRUDServer {
   }
 
   #handleRequest = (req: http.IncomingMessage, res: http.ServerResponse): void => {
-    if (req.url === this.usersEndPoint.url)
+    if (req.url?.startsWith(this.usersEndPoint.url))
       this.usersEndPoint.respond(req, res);
+    else {
+      res.writeHead(404, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify({message: 'Invalid path, \'/api/users/[id]\' required'}));
+    }
   }
 }
